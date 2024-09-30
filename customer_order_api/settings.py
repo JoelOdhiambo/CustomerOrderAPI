@@ -13,20 +13,21 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import django_heroku
 import os
+from dotenv import load_dotenv
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv()
 
+
+
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,7 +39,7 @@ SECRET_KEY = 'django-insecure-$))qiuareipw0@$fb6(qh%r-66@t)nof=2h8!@g9=()r9##-ne
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://savannah-informatics-app-e00749f637ce.herokuapp.com']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 SESSION_COOKIE_AGE = 3600
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -63,14 +64,13 @@ AUTHENTICATION_BACKENDS = (
 )
 
 #Credentials to Auth0
-AUTH0_DOMAIN = 'dev-6xvay044vjvghqhn.us.auth0.com'
-AUTH0_CLIENT_ID = 'zncolE7F8URk6vLkpispnQ2KDGcD33Hu'
-AUTH0_CLIENT_SECRET = 't7qbODEAbkaI9E43R5IP3QTIDwnrpGmdFKR4RAPTnlBFYruWJMnbY1pFDNSq4k_E'
-
+AUTH0_DOMAIN = os.getenv('AUTH0_DOMAIN')
+AUTH0_CLIENT_ID = os.getenv('AUTH0_CLIENT_ID')
+AUTH0_CLIENT_SECRET = os.getenv('AUTH0_CLIENT_SECRET')
 #Credentials to access Africa'sTalking API
 
-AFRICASTALKING_USERNAME = "sandbox"
-AFRICASTALKING_API_KEY = "atsk_8c5a138a9a0e41e60a3673c3690975c102fc244b14ec5c23512a58e1ae68fe827f82d587"
+AFRICASTALKING_USERNAME = os.getenv('AFRICASTALKING_USERNAME', 'sandbox')
+AFRICASTALKING_API_KEY = os.getenv('AFRICASTALKING_API_KEY')
 
 # Configuration settings for integrating Auth0 authentication with Django using the social-auth-app-django package.
 # These settings define how the application will interact with Auth0 to handle user authentication.
