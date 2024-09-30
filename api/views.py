@@ -47,6 +47,8 @@ def home(request):
     
 @login_required
 def dashboard(request):
+    if not request.user.is_authenticated:
+        return redirect('social:begin', backend='auth0') 
     customers = Customer.objects.filter(user=request.user) 
     orders = Order.objects.filter(user=request.user)
 
