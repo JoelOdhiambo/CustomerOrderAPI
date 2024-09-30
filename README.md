@@ -27,8 +27,9 @@ This project implements a simple customer and order management system with the f
 
 #### 1\. **Clone the Repository**
 
-`git clone https://github.com/JoelOdhiambo/Savannah-Informatics-Technical-Challenge.git
-cd customer_order_api`
+`git clone https://github.com/JoelOdhiambo/Savannah-Informatics-Technical-Challenge.git`
+Switch to to the `customer_order_api` folder with  
+`cd customer_order_api`
 
 #### 2\. **Install Dependencies**
 
@@ -43,10 +44,6 @@ You need to create a `.env` file or set environment variables for:
 
 Create a `.env` file in the project root and add the following:
 
-
-
-
-
 `# Auth0 Configuration
 AUTH0_CLIENT_ID=your_auth0_client_id
 AUTH0_CLIENT_SECRET=your_auth0_client_secret
@@ -57,7 +54,7 @@ AUTH0_AUDIENCE=your_auth0_audience
 AFRICASTALKING_USERNAME=sandbox
 AFRICASTALKING_API_KEY=your_africas_talking_api_key`
 
-Alternatively, you can set these environment variables directly on your system.
+Alternatively, you can set these environment variables directly in your `settings.py`.
 
 #### 4\. **Run Database Migrations**
 
