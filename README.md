@@ -9,11 +9,13 @@ This project implements a simple customer and order management system with the f
 -   **Unit testing** with **coverage checking** using Django's test framework and `coverage.py`.
 -   **Continuous Integration** with **GitHub Actions**.
 -   **Continuous Deployment** to **Heroku**.
+`DEBUG has been set to True for access to the browsable API`
 
 ### Prerequisites
 
 -   **Python 3.9.6 (64bit)**
 -   **Django**
+-   **Django Rest Framework**
 -   An **Auth0 account** (for authentication and authorization).
 -   An **Africa's Talking account** (for SMS functionality).
 -   **GitHub** (for CI/CD with GitHub Actions).

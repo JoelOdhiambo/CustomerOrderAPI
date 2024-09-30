@@ -62,13 +62,18 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+#Credentials to Auth0
 AUTH0_DOMAIN = 'dev-6xvay044vjvghqhn.us.auth0.com'
 AUTH0_CLIENT_ID = 'zncolE7F8URk6vLkpispnQ2KDGcD33Hu'
 AUTH0_CLIENT_SECRET = 't7qbODEAbkaI9E43R5IP3QTIDwnrpGmdFKR4RAPTnlBFYruWJMnbY1pFDNSq4k_E'
 
+#Credentials to access Africa'sTalking API
 
 AFRICASTALKING_USERNAME = "sandbox"
 AFRICASTALKING_API_KEY = "atsk_8c5a138a9a0e41e60a3673c3690975c102fc244b14ec5c23512a58e1ae68fe827f82d587"
+
+# Configuration settings for integrating Auth0 authentication with Django using the social-auth-app-django package.
+# These settings define how the application will interact with Auth0 to handle user authentication.
 
 SOCIAL_AUTH_TRAILING_SLASH = False  
 SOCIAL_AUTH_AUTH0_DOMAIN = AUTH0_DOMAIN
