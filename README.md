@@ -27,7 +27,7 @@ This project implements a simple customer and order management system with the f
 
 #### 1\. **Clone the Repository**
 
-`git clone <your-repository-url>
+`git clone https://github.com/JoelOdhiambo/Savannah-Informatics-Technical-Challenge.git
 cd customer_order_api`
 
 #### 2\. **Install Dependencies**
