@@ -28,7 +28,7 @@ This project implements a simple customer and order management system with the f
 
 #### 1\. **Clone the Repository**
 
-`git clone https://github.com/JoelOdhiambo/Savannah-Informatics-Technical-Challenge.git`
+`git clone https://github.com/JoelOdhiambo/CustomerOrderAPI.git`
 Switch to to the `customer_order_api` folder with  
 `cd customer_order_api`
 
