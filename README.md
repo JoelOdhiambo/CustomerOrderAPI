@@ -1,4 +1,4 @@
-# Savannah-Informatics-Technical-Challenge
+# CustomerOrderAPI
 ### Project Overview
 
 This project implements a simple customer and order management system with the following features:
