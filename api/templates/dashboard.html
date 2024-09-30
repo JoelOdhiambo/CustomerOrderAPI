@@ -1,0 +1,193 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+  <h2 class="mt-4">Dashboard</h2>
+  <p>Welcome, {{ user.username }}!</p>
+  <div class="row mb-4">
+    <div class="col-md-12 text-end">
+      <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>Input Customer</h3>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="{% url 'add_customer' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Customer Name:</label>
+              <input
+                title="Only letters and spaces are allowed"
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                pattern="[A-Za-z ]+"
+                required
+              />
+            </div>
+            <label for="code" class="form-label">Customer Code:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              name="code"
+              pattern="[A-Za-z0-9]{6}"
+              title="The customer code must be exactly 6 alphanumeric characters"
+              required
+            />
+            <div class="mb-3">
+              <label for="phone_number" class="form-label"
+                >Customer Phone Number:</label
+              >
+              <div class="input-group">
+                <span class="input-group-text">+254</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone_number"
+                  name="phone_number"
+                  pattern="[0-9]{9}"
+                  title="Phone number must have additional 9 digits"
+                  placeholder="712345678"
+                  required
+                />
+              </div>
+              <small class="text-muted"
+                >Enter the phone number without the +254 (e.g.,
+                712345678).</small
+              >
+            </div>
+            <button type="submit" class="btn btn-primary">Add Customer</button>
+            {% if messages %}
+            <div class="row">
+              <div class="col-md-12">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} mt-2" role="alert">
+                  {{ message }}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>Input Order</h3>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="{% url 'add_order' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="customer" class="form-label">Select Customer:</label>
+              <select
+                class="form-control"
+                id="customer"
+                name="customer"
+                required
+              >
+                <option value="" disabled selected>Select a customer</option>
+                {% for customer in customers %}
+                <option value="{{ customer.id }}">
+                  {{ customer.name }} (ID: {{ customer.id }})
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="item" class="form-label">Order Item:</label>
+              <input
+                title="Only letters and spaces are allowed"
+                type="text"
+                class="form-control"
+                id="item"
+                pattern="[A-Za-z ]+"
+                name="item"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="amount" class="form-label">Amount:</label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                title="Amount must be a positive number"
+                class="form-control"
+                id="amount"
+                name="amount"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-success">Add Order</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>View Customers</h3>
+        </div>
+        <div class="card-body">
+          <ul class="list-group" id="customerList">
+            {% for customer in customers %}
+            <li class="list-group-item">
+              ID: {{ customer.id }} - {{ customer.name }} ({{ customer.code }})
+              - {{ customer.phone_number }}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>View Orders</h3>
+        </div>
+        <div class="card-body">
+          <ul class="list-group" id="orderList">
+            {% for order in orders %}
+            <li class="list-group-item">
+              Customer ID: {{ order.customer.id }} - {{ order.customer.name }}
+              ordered {{ order.item }} for {{ order.amount }}
+              <br/>
+              <small
+                >Order Time: {{ order.order_time|date:"d M Y, H:i:s" }}</small
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>API Endpoints</h3>
+        </div>
+        <div class="card-body">
+          <a href="/api/customers/" class="btn btn-info">Go to Customers API</a>
+          <a href="/api/orders/" class="btn btn-info">Go to Orders API</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
