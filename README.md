@@ -17,7 +17,7 @@ This project implements a simple customer and order management system with the f
 -   **Django**
 -   **Django Rest Framework**
 -   An **Auth0 account** (for authentication and authorization).
--   An **Africa's Talking account** (for SMS functionality).
+-   An **Africa's Talking account** (for SMS functionality and Simulator Access).
 -   **GitHub** (for CI/CD with GitHub Actions).
 -   **Heroku CLI** (for deploying the app).
 
